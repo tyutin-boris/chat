@@ -4,7 +4,7 @@
 </head>
 <body>
 <br>
-<form method="post" action="/api/messages">
+<form  th:action="@{/api/messages}" method="post">
     <input type="title" name="title" placeholder="Enter title">
     <input type="text" name="text" placeholder="Enter text">
     <button type="submit"> Add message</button>
@@ -19,8 +19,8 @@
     <br>
 </div>
 <br>
-<form method="get" action="/api/logout">
-    <button type="submit">Logout</button>
+<form th:action="@{/api/logout}" method="get">
+    <input type="submit" value="Sign Out"/>
 </form>
 </body>
 </html>
