@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthorController {
 
     @GetMapping("/logout")
-    public void logout(){
+    public void logout() {
+
         System.out.println();
     }
 }
