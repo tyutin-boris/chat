@@ -33,19 +33,6 @@ public class DefaultController {
         return "index";
     }
 
-    @PostMapping("/messages")
-    public String add(@RequestParam String title, @RequestParam String text) {
-        User user = userService.findById(0);
-        Message message = Message
-                .builder()
-                .author(user)
-                .title(title)
-                .text(text)
-                .date(LocalDate.now()).build();
-        messageService.save(message);
-        return "redirect:/api/messages";
-    }
-
     @GetMapping("/login")
     public String login() {
         return "login";

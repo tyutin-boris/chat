@@ -1,5 +1,6 @@
 package com.boris.tyutin.chat.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,14 +18,16 @@ public class AuthorController {
     }
 
     @PostMapping("/login")
-    public void login(@RequestParam String username, @RequestParam String password) {
+    public ResponseEntity<?> login(@RequestParam String username, @RequestParam String password) {
         Authentication auth = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(username, password));
         SecurityContextHolder.getContext().setAuthentication(auth);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/logout")
-    public void logout() {
+    public ResponseEntity<?> logout() {
         SecurityContextHolder.clearContext();
+        return ResponseEntity.ok().build();
     }
 }
