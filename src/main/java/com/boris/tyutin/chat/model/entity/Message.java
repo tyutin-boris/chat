@@ -1,6 +1,11 @@
 package com.boris.tyutin.chat.model.entity;
 
-import lombok.*;
+
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
+import java.time.LocalDate;
 
 @Setter
 @Getter
@@ -29,9 +35,10 @@ public class Message {
     @JoinColumn(name = "author_id", nullable = false)
     private User author;
 
-    @Column
     private String title;
 
     @Column(length = 2024)
     private String text;
+
+    private LocalDate date;
 }

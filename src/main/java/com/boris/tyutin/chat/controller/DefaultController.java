@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
-@RequestMapping("/messages")
+@RequestMapping("/api/messages")
 public class DefaultController {
 
     private final MessageService messageService;
@@ -39,7 +40,8 @@ public class DefaultController {
                 .builder()
                 .author(user)
                 .title(title)
-                .text(text).build();
+                .text(text)
+                .date(LocalDate.now()).build();
         messageService.save(message);
         return "redirect:/messages";
     }
