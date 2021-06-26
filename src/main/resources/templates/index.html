@@ -3,17 +3,22 @@
 <head>
 </head>
 <body>
+<br>
 <form method="post" action="/api/messages">
     <input type="title" name="title" placeholder="Enter title">
     <input type="text" name="text" placeholder="Enter text">
     <button type="submit"> Add message</button>
 </form>
+<br>
+<br>
 <div th:each="message : ${messages}">
-    <b th:text="'Title ' + ${message.title}"></b>
-    <p th:text="'Text ' + ${message.text}"></p>
-    <p th:text="'Author ' + ${message.author.name}"></p>
-    <p th:text="'Date ' + ${message.date}"></p>
+    <b th:text="'Title: ' + ${message.title}"></b>
+    <p th:text="'Text: ' + ${message.text}"></p>
+    <p th:text="'Author: ' + ${message.author.name}"></p>
+    <p th:text="'Date: ' + ${message.date}"></p>
+    <br>
 </div>
+<br>
 <form method="get" action="/api/logout">
     <button type="submit">Logout</button>
 </form>
