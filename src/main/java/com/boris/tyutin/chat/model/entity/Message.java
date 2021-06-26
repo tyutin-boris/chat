@@ -1,9 +1,6 @@
 package com.boris.tyutin.chat.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +15,7 @@ import javax.persistence.FetchType;
 @Setter
 @Getter
 @Entity
+@Builder
 @Table(name = "messages")
 @NoArgsConstructor
 @AllArgsConstructor
