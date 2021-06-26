@@ -37,4 +37,9 @@ public class DefaultController {
     public String login() {
         return "login";
     }
+
+    @GetMapping("/reg")
+    public String reg() {
+        return "reg";
+    }
 }

@@ -18,4 +18,8 @@ public class UserService {
     public User findById(long id) {
         return userRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
+
+    public void save(User user) {
+        userRepository.save(user);
+    }
 }
