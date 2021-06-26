@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/messages")
+@RequestMapping("/api")
 public class DefaultController {
 
     private final MessageService messageService;
@@ -26,14 +26,14 @@ public class DefaultController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping("/messages")
     public String getMessages(Model model) {
         List<Message> allMessage = messageService.findAllMessage();
         model.addAttribute("messages", allMessage);
         return "index";
     }
 
-    @PostMapping
+    @PostMapping("/messages")
     public String add(@RequestParam String title, @RequestParam String text) {
         User user = userService.findById(0);
         Message message = Message
@@ -43,6 +43,11 @@ public class DefaultController {
                 .text(text)
                 .date(LocalDate.now()).build();
         messageService.save(message);
-        return "redirect:/messages";
+        return "redirect:/api/messages";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 }
