@@ -3,12 +3,6 @@
 <head>
 </head>
 <body>
-<div th:if="${param.error}">
-    Invalid username and password.
-</div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
 <form th:action="@{/api/login}" method="post">
     <div><label> Email : <input type="text" name="email"/> </label></div>
     <br>

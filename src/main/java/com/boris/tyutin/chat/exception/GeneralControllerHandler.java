@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GeneralControllerHandler {
 
     @ExceptionHandler
-    public ResponseEntity userNotAuthorizedHandler(UsernameNotFoundException exception) {
+    public ResponseEntity userHandler(UsernameNotFoundException exception) {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
-    public ResponseEntity<String> userNotAuthorizedHandler(UserPresent exception) {
+    public ResponseEntity<String> registrationHandler(UserPresent exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
