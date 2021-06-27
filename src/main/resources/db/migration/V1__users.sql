@@ -10,5 +10,6 @@
 
     SELECT setval('users_id_seq', 10, true);
 
+--password 000000
     INSERT INTO users
-        VALUES (0, 'Boris', 'Boris@gmail.com', '0000');
+        VALUES (0, 'Boris', 'Boris@gmail.com', '$2y$12$1rfj9i4hq.pG3CEd62ivWuoxOWUx7YpGiFuI7Qsis9DcrT7l5ptE.');

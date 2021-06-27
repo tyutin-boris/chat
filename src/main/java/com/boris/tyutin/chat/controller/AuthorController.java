@@ -2,6 +2,7 @@ package com.boris.tyutin.chat.controller;
 
 import com.boris.tyutin.chat.model.entity.User;
 import com.boris.tyutin.chat.model.service.UserService;
+import com.boris.tyutin.chat.security.PasswordEncoderUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,12 +14,15 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class AuthorController {
 
-    private final AuthenticationManager authenticationManager;
     private final UserService userService;
+    private final PasswordEncoderUtil encoderUtil;
+    private final AuthenticationManager authenticationManager;
 
-    public AuthorController(AuthenticationManager authenticationManager, UserService userService) {
+    public AuthorController(AuthenticationManager authenticationManager,
+                            UserService userService, PasswordEncoderUtil encoderUtil) {
         this.authenticationManager = authenticationManager;
         this.userService = userService;
+        this.encoderUtil = encoderUtil;
     }
 
     @PostMapping("/login")
@@ -42,7 +46,7 @@ public class AuthorController {
         User user = User.builder()
                 .name(name)
                 .email(email)
-                .password(password)
+                .password(encoderUtil.passwordEncoder().encode(password))
                 .build();
         userService.save(user);
         return ResponseEntity.ok().build();

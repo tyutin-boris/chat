@@ -1,5 +1,6 @@
 package com.boris.tyutin.chat.model.entity;
 
+import com.boris.tyutin.chat.security.entity.Role;
 import lombok.*;
 
 import java.util.List;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.OneToMany;
 import javax.persistence.FetchType;
+
+import static com.boris.tyutin.chat.security.entity.Role.USER;
 
 @Setter
 @Getter
@@ -37,4 +40,8 @@ public class User {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "author")
     private List<Message> messages;
+
+    public Role getRole() {
+        return USER;
+    }
 }

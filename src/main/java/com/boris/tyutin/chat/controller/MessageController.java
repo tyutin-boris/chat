@@ -23,7 +23,7 @@ public class MessageController {
 
     @PostMapping
     public ResponseEntity<?> add(@RequestParam String title, @RequestParam String text) {
-        User user = userService.findById(0);
+        User user = userService.getCurrentUser();
         Message message = Message
                 .builder()
                 .author(user)
