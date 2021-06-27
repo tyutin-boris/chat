@@ -1,5 +1,6 @@
 package com.boris.tyutin.chat.controller;
 
+import com.boris.tyutin.chat.exception.exeptions.UserPresent;
 import com.boris.tyutin.chat.model.entity.User;
 import com.boris.tyutin.chat.model.service.UserService;
 import com.boris.tyutin.chat.security.PasswordEncoderUtil;
@@ -8,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -43,6 +45,12 @@ public class AuthorController {
     public ResponseEntity<?> reg(@RequestParam String name,
                                  @RequestParam String email,
                                  @RequestParam String password) {
+
+        userService.findByEmail(email)
+                .ifPresent(user -> {
+                    throw new UserPresent("User with this " + email + " is already registered");
+                });
+
         User user = User.builder()
                 .name(name)
                 .email(email)

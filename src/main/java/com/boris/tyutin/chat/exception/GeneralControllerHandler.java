@@ -1,5 +1,6 @@
 package com.boris.tyutin.chat.exception;
 
+import com.boris.tyutin.chat.exception.exeptions.UserPresent;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,5 +13,10 @@ public class GeneralControllerHandler {
     @ExceptionHandler
     public ResponseEntity userNotAuthorizedHandler(UsernameNotFoundException exception) {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<String> userNotAuthorizedHandler(UserPresent exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
